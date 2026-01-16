@@ -1,22 +1,168 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.1 Transitional//EN">
 <html>
   <head>
-    <title>Website-Projekt</title>
-    <meta name="AUTHOR" content="Euer Name">
-    <meta name="COPYRIGHT" content="Copyright (c) 2025 by Vorname Nachname">
+    <title>Bewerbungswebsite | Fabio Stork</title>
+    <meta name="AUTHOR" content="Fabio Stork">
+    <meta name="COPYRIGHT" content="Copyright (c) 2025 by Fabio Stork">
     <meta name="ROBOTS" content="INDEX, FOLLOW">
-    <meta name="DESCRIPTION" content="Dies ist die Bewerbungshomepage von Vorname Nachname">
-    <meta name ="KEYWORDS" content ="Bewerbungshomepage, Vorname Nachname, Bewerbung">
+    <meta name="DESCRIPTION" content="Dies ist die Bewerbungshomepage von Fabio Stork">
+    <meta name ="KEYWORDS" content ="Bewerbungshomepage, Fabio Stork, Bewerbung">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    >
+
     <!-- import the webpage's stylesheet -->
     <link rel="stylesheet" href="/style.css" />
-      <!-- import the webpage's javascript file -->
+    <!-- import the webpage's javascript file -->
     <script src="/script.js" defer></script>
   </head>
 
   <body>
-    <p>Hello World</p>
+    <div class="page">
+      <header class="site-header">
+        <div class="logo" aria-label="Logo">
+          <svg viewBox="0 0 56 56" aria-hidden="true" focusable="false">
+            <defs>
+              <linearGradient id="logo-gradient" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#63d3ff" />
+                <stop offset="100%" stop-color="#7b5cff" />
+              </linearGradient>
+            </defs>
+            <circle cx="28" cy="28" r="24" fill="url(#logo-gradient)" />
+            <path
+              d="M18 32c4.5-1 7.5-4.5 9-9 1.5 4.5 4.5 8 9 9"
+              fill="none"
+              stroke="#fff"
+              stroke-width="3"
+              stroke-linecap="round"
+            />
+            <circle cx="28" cy="20" r="3" fill="#fff" />
+          </svg>
+          <div>
+            <span class="logo-title">Fabio Stork</span>
+            <span class="logo-subtitle">Designvorschlag &amp; Umsetzung</span>
+          </div>
+        </div>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">
+          Menü
+          <span class="menu-toggle__icon" aria-hidden="true"></span>
+        </button>
+        <nav class="nav" id="primary-nav">
+          <a class="nav-link" href="#projekt">Projekt</a>
+          <a class="nav-link" href="#erfolge">Highlights</a>
+          <a class="nav-link" href="#mindmap">MindMap</a>
+          <a class="nav-link" href="#news">News</a>
+        </nav>
+      </header>
+
+      <main>
+        <section class="hero" id="projekt">
+          <div class="hero-content">
+            <p class="hero-eyebrow">Headerüberschrift</p>
+            <h1>Bewerbungswebsite von Fabio Stork mit klaren Bereichen und moderner Typografie.</h1>
+            <p>
+              Diese Seite bündelt die wichtigsten Schritte: Designvorschlag erstellt, MindMap im
+              Klassennotizbuch eingebunden, GitHub angemeldet und Codespace eingerichtet.
+            </p>
+            <div class="hero-actions">
+              <a class="btn" href="#erfolge">Projekt-Details</a>
+              <a class="btn btn-outline" href="#news">News ansehen</a>
+            </div>
+          </div>
+          <div class="hero-card">
+            <h2>Projektstatus</h2>
+            <ul>
+              <li>DIV-Bereiche definiert und eigene Farben festgelegt.</li>
+              <li>Schriftart „Montserrat“ eingebunden.</li>
+              <li>Hintergrundbild eingefügt.</li>
+              <li>Logo erstellt und eingefügt.</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="grid" id="erfolge">
+          <article class="card">
+            <h3>Designvorschlag</h3>
+            <p>
+              Strukturierter Aufbau mit Header, Menü, News-Teaser und klaren Inhaltsblöcken für die
+              Bewerbung.
+            </p>
+          </article>
+          <article class="card">
+            <h3>GitHub &amp; Codespace</h3>
+            <p>
+              Repository eingerichtet, Anmeldung abgeschlossen und Codespace für die Entwicklung
+              vorbereitet.
+            </p>
+          </article>
+          <article class="card">
+            <h3>DIV-Bereiche</h3>
+            <p>
+              Saubere Container, flexible Grids und definierte Bereiche für Inhalte, um die Seite
+              übersichtlich zu halten.
+            </p>
+          </article>
+          <article class="card">
+            <h3>Farben &amp; Typografie</h3>
+            <p>
+              Eigene Farbpalette in Blau-Violett sowie Montserrat als moderne Schriftart integriert.
+            </p>
+          </article>
+        </section>
+
+        <section class="mindmap" id="mindmap">
+          <div>
+            <h2>MindMap im Klassennotizbuch</h2>
+            <p>
+              Die MindMap wurde eingebunden und zeigt alle Inhalte der Bewerbung auf einen Blick.
+              Ergänzend wurden die nächsten Schritte dokumentiert.
+            </p>
+          </div>
+          <div class="mindmap-preview" role="img" aria-label="MindMap Vorschau">
+            <p>MindMap Vorschau</p>
+            <span>Im Klassennotizbuch eingebunden</span>
+          </div>
+        </section>
+
+        <section class="news" id="news">
+          <div class="news-header">
+            <h2>News (Teaser)</h2>
+            <p>Aktuelle Updates zur Bewerbungswebsite von Fabio Stork und den nächsten Schritten.</p>
+          </div>
+          <div class="news-grid">
+            <article class="news-item">
+              <span class="news-date">15. März 2025</span>
+              <h3>Menü animiert &amp; responsive umgesetzt</h3>
+              <p>
+                Das Menü wurde als animierte Navigation umgesetzt und passt sich automatisch für
+                mobile Geräte an.
+              </p>
+            </article>
+            <article class="news-item">
+              <span class="news-date">09. März 2025</span>
+              <h3>Logo-Design finalisiert</h3>
+              <p>
+                Ein eigenes Logo wurde erstellt und integriert, um den Auftritt persönlich und
+                wiedererkennbar zu machen.
+              </p>
+            </article>
+            <article class="news-item">
+              <span class="news-date">01. März 2025</span>
+              <h3>Hintergrundbild &amp; Farben</h3>
+              <p>
+                Hintergrundbild eingebunden sowie eine individuelle Farbpalette für die Bewerbung
+                definiert.
+              </p>
+            </article>
+          </div>
+        </section>
+      </main>
+    </div>
   </body>
 </html>
