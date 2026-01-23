@@ -1,0 +1,13 @@
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  src: url(Montserrat-VariableFont_wght.ttf) format('truetype');
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 700;
+  src: url(Montserrat-VariableFont_wght.ttf) format('truetype');
+}
