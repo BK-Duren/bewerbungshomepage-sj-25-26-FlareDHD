@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <title><%= title || 'Seite' %> - Fabio Stork</title>
+    <meta charset="utf-8" />
+    <meta name="AUTHOR" content="Fabio Stork">
+    <meta name="COPYRIGHT" content="Copyright (c) 2025 by Fabio Stork">
+    <meta name="ROBOTS" content="INDEX, FOLLOW">
+    <meta name="DESCRIPTION" content="Bewerbungshomepage von Fabio Stork">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    >
+    <link rel="stylesheet" href="/style.css" />
+    <script src="/script.js" defer></script>
+    <link rel="stylesheet" href="/font.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  </head>
+  <body>
+    <div class="page">
+      <%- header %>
+
+      <main>
+        <%- content %>
+      </main>
+
+      <%- footer %>
+    </div>
+  </body>
+</html>

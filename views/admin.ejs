@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <title>Content-Editor - <%= name %></title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <h1>Bearbeite <code><%= name %></code></h1>
+  <form method="POST" action="/admin/content/<%= name %>">
+    <label for="data">Inhalt (<%= name %>.html)</label><br>
+    <textarea id="data" name="data" cols="80" rows="20"><%= data %></textarea>
+    <br>
+    <% if (typeof navi !== 'undefined') { %>
+      <label for="naviData">Navigation (navi.html)</label><br>
+      <textarea id="naviData" name="naviData" cols="80" rows="10"><%= navi %></textarea>
+      <br>
+    <% } %>
+    <button type="submit">Speichern</button>
+  </form>
+</body>
+</html>

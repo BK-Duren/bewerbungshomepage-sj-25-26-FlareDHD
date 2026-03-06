@@ -1,5 +1,5 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.1 Transitional//EN">
-<html>
+<!DOCTYPE html>
+<html lang="de">
   <head>
     <title>Bewerbungshomepage - Fabio Stork</title>
     <meta name="AUTHOR" content="Fabio Stork">
@@ -28,6 +28,10 @@
 
   <body>
     <div class="page">
+      <!-- header fragment (falls leer, wird Standardmarkup verwendet) -->
+      <% if (header && header.trim()) { %>
+        <%- header %>
+      <% } else { %>
       <header class="site-header">
         <div class="logo" aria-label="Logo">
           <svg viewBox="0 0 56 56" aria-hidden="true" focusable="false">
@@ -50,22 +54,26 @@
           <span class="menu-toggle__icon" aria-hidden="true"></span>
         </button>
         <nav class="nav" id="primary-nav">
-          <a class="nav-link" href="#projekt">Projekt</a>
-          <a class="nav-link" href="#erfolge">Highlights</a>
-          <a class="nav-link" href="#schulbildung">Schulbildung</a>
-          <a class="nav-link" href="#berufsbildung">Berufsbildung</a>
-          <a class="nav-link" href="#kontakt">Kontakt</a>
+          <% if (navi && navi.trim()) { %>
+            <%- navi %>
+          <% } else { %>
+            <a class="nav-link" href="#projekt">Projekt</a>
+            <a class="nav-link" href="#erfolge">Highlights</a>
+            <a class="nav-link" href="#schulbildung">Schulbildung</a>
+            <a class="nav-link" href="#berufsbildung">Berufsbildung</a>
+            <a class="nav-link" href="#kontakt">Kontakt</a>
+          <% } %>
         </nav>
       </header>
+      <% } %>
 
       <main>
         <section class="hero" id="projekt">
           <div class="hero-content">
-            <p class="hero-eyebrow">Willkommen</p>
+            <p class="hero-eyebrow"><%= home.headline || 'Willkommen' %></p>
             <h1>Bewerbungshomepage von Fabio Stork</h1>
             <p>
-              Hier finden Sie alle wichtigen Informationen zu meiner Schulbildung, Berufsbildung und Kontaktmöglichkeiten.
-              Diese Seite wurde mit modernem Design und aktueller Typografie gestaltet.
+              <%= home.intro || 'Hier finden Sie alle wichtigen Informationen zu meiner Schulbildung, Berufsbildung und Kontaktmöglichkeiten. Diese Seite wurde mit modernem Design und aktueller Typografie gestaltet.' %>
             </p>
             <div class="hero-actions">
               <a class="btn" href="#erfolge">Mehr erfahren</a>
@@ -128,6 +136,9 @@
           </div>
         </section>
 
+        <% if (news && news.trim()) { %>
+          <%- news %>
+        <% } else { %>
         <section class="news" id="berufsbildung">
           <div class="news-header">
             <h2>Berufsbildung &amp; Erfahrung</h2>
@@ -160,6 +171,7 @@
             </article>
           </div>
         </section>
+        <% } %>
 
         <section class="contact" id="kontakt">
           <div class="contact-header">
@@ -173,6 +185,19 @@
           </div>
         </section>
       </main>
+
+      <% if (typeof footer === 'string') { %>
+        <%- footer %> <!-- already full HTML -->
+      <% } else if (footer && footer.links) { %>
+      <footer>
+        <p><%= footer.text %></p>
+        <ul>
+          <% footer.links.forEach(l => { %>
+            <li><a href="<%= l.href %>"><%= l.label %></a></li>
+          <% }) %>
+        </ul>
+      </footer>
+      <% } %>
     </div>
   </body>
 </html>
