@@ -8,7 +8,8 @@
 <body>
   <h1>Bearbeite <code><%= name %></code></h1>
   <form method="POST" action="/admin/content/<%= name %>">
-    <label for="data">Inhalt (<%= name %>.html)</label><br>
+    <input type="hidden" name="ext" value="<%= ext %>" />
+    <label for="data">Inhalt (<%= name %>.<%= ext %>)</label><br>
     <textarea id="data" name="data" cols="80" rows="20"><%= data %></textarea>
     <br>
     <% if (typeof navi !== 'undefined') { %>

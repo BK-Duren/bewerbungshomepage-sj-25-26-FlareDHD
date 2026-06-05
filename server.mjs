@@ -8,10 +8,13 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import { configDotenv } from "dotenv";
 import { readFile, writeFile } from 'fs/promises';
+import MarkdownIt from 'markdown-it';
 configDotenv();
 const app = express();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
+
+const markdown = new MarkdownIt({ html: true, linkify: true, typographer: true });
 
 // templating engine setup
 app.set('view engine', 'ejs');
@@ -46,9 +49,11 @@ app.use(express.static("public"));
 app.use(express.static("assets"));
 app.use(express.static("content"));
 
-// helper to load content by name (prefers .html, falls back to .json)
+// helper to load content by name (prefers .html, then .md, falls back to .json)
 async function loadContent(name) {
   const htmlPath = `./content/${name}.html`;
+  const mdPath = `./content/${name}.md`;
+
   try {
     let content = await readFile(htmlPath, 'utf8');
     // when loading header, automatically append navi if header doesn't define one
@@ -67,15 +72,40 @@ async function loadContent(name) {
     }
     return content;
   } catch (e) {
-    // if html not found, try json (legacy)
-    const jsonPath = `./content/${name}.json`;
     try {
-      const txt = await readFile(jsonPath, 'utf8');
-      return JSON.parse(txt);
+      const markdownText = await readFile(mdPath, 'utf8');
+      return `<div class="markdown-body">${markdown.render(markdownText)}</div>`;
     } catch (e2) {
-      return '';
+      const jsonPath = `./content/${name}.json`;
+      try {
+        const txt = await readFile(jsonPath, 'utf8');
+        return JSON.parse(txt);
+      } catch (e3) {
+        return '';
+      }
     }
   }
+}
+
+// raw content loader for the admin editor, preserving .html, .md or .json format
+async function loadRawContent(name) {
+  const htmlPath = `./content/${name}.html`;
+  const mdPath = `./content/${name}.md`;
+  const jsonPath = `./content/${name}.json`;
+
+  try {
+    const data = await readFile(htmlPath, 'utf8');
+    return { data, ext: 'html' };
+  } catch {}
+  try {
+    const data = await readFile(mdPath, 'utf8');
+    return { data, ext: 'md' };
+  } catch {}
+  try {
+    const data = await readFile(jsonPath, 'utf8');
+    return { data, ext: 'json' };
+  } catch {}
+  return { data: '', ext: 'html' };
 }
 
 // Basic routing
@@ -137,8 +167,8 @@ function checkAdmin(req, res, next) {
 app.get('/admin/content/:name', checkAdmin, async (req, res, next) => {
   try {
     const name = req.params.name;
-    const data = await loadContent(name);
-    const renderData = { name, data };
+    const raw = await loadRawContent(name);
+    const renderData = { name, data: raw.data, ext: raw.ext };
     // when editing header, also show navigation block for convenience
     if (name === 'header') {
       renderData.navi = await loadContent('navi');
@@ -153,8 +183,13 @@ app.post('/admin/content/:name', checkAdmin, async (req, res, next) => {
   try {
     const name = req.params.name;
     const content = req.body.data || '';
-    // save main file
-    await writeFile(`./content/${name}.html`, content, 'utf8');
+    const ext = req.body.ext === 'md'
+      ? 'md'
+      : req.body.ext === 'json'
+      ? 'json'
+      : 'html';
+
+    await writeFile(`./content/${name}.${ext}`, content, 'utf8');
     // if header form submitted with nav area, update navi.html too
     if (name === 'header' && typeof req.body.naviData !== 'undefined') {
       await writeFile('./content/navi.html', req.body.naviData, 'utf8');

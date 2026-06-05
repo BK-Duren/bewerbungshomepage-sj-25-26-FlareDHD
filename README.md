@@ -8,9 +8,10 @@ Diese Anwendung enthält ein sehr leichtes CMS, das Inhalte aus dem Verzeichnis 
 * `content/header.html` – komplette Kopfzeile, z. B. Logo + Menü-Button
 * `content/navi.html` – Navigationselemente (Links) innerhalb der Kopfzeile
 * `content/news.html` – News‑/Aktionsbereich (ersetzt Standard‑Newssektion)
-* beliebige weitere `.html`-Dateien lassen sich anlegen und über `/admin/content/:name` bearbeiten. Standardmäßig sind die Menüeinträge als **Anchor-Links** angelegt (z. B. `#projekt`), so dass das animierte Menü und der Smooth-Scroll wie zuvor funktionieren. 
+* beliebige weitere `.html`- oder `.md`-Dateien lassen sich anlegen und über `/admin/content/:name` bearbeiten. Markdown-Dateien werden automatisch in HTML umgewandelt.
+* Standardmäßig sind die Menüeinträge als **Anchor-Links** angelegt (z. B. `#projekt`), so dass das animierte Menü und der Smooth-Scroll wie zuvor funktionieren. 
 * Du kannst in `navi.html` bei Bedarf weitere Links hinzufügen, aber die **Footer/ Header/ Navi/ News‑Knöpfe** sind nicht Teil des Standardmenüs – entferne sie einfach wieder, wie im Ausgangszustand.
-* Wenn du lieber «echte» Seiten möchtest (statt nur Sprungmarken), bleibt die optionale Route `/:page` bestehen; sie belädt `content/<name>.html` und packt Header, Footer, Navigation und News drumherum.
+* Wenn du lieber «echte» Seiten möchtest (statt nur Sprungmarken), bleibt die optionale Route `/:page` bestehen; sie belädt `content/<name>.html` oder `content/<name>.md` und packt Header, Footer, Navigation und News drumherum.
 
 * Der Header selbst sollte **keine** `<nav>` enthalten; die Liste der Links stammt ausschließlich aus `navi.html`. Beim Laden fügt der Server `navi.html` automatisch als Navigation in den Header ein.
   Ändere den Menüinhalt durch Bearbeiten von `navi.html` über die Admin‑Schnittstelle oder direkt in der Datei.
